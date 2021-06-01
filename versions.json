@@ -1,0 +1,18 @@
+[
+    {
+        "version": {
+            "major":17,
+            "minor":0
+        },
+        "path":"v17_0",
+        "reason": "Original plugin."
+    },
+    {
+        "version": {
+            "major":20,
+            "minor":0
+        },
+        "path":"v20_0",
+        "reason": "New manifest to hide plugin from v20 and newer Windows clients (Windows now offers this functionality in the Material Editor dialog)."
+    }
+]
