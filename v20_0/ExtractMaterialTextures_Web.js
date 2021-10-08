@@ -1,12 +1,12 @@
-if (typeof deanstein == 'undefined')
+if (typeof ExtractMaterialTextures == 'undefined')
 {
-    deanstein = {};
+    ExtractMaterialTextures = {};
 }
 
 // define all image types that can be associated with a Material
 var imgTypesArray = ["Texture","Bump","Cutout"];
 
-deanstein.PlaceholderImage = function()
+ExtractMaterialTextures.createPlaceholderImages = function()
 {
     // create a placeholder image and label for each type
     //console.log("Creating placeholder images and labels");
@@ -28,16 +28,12 @@ deanstein.PlaceholderImage = function()
     imgTypesArray.forEach(createPlaceholderHTMLElements);
 };
 
-
-
 // Submit runs from the HTML page.  This script gets loaded up in both FormIt's
 // JS engine and also in the embedded web JS engine inside the panel.
-deanstein.Submit = function()
+ExtractMaterialTextures.submit = function()
 {
-    var args = {
-    //"radius": parseFloat(document.a.radius.value),
-    //"cleanup": document.a.cleanup.checked
-    };
+    // args, even empty, required for the callMethod invocation
+    var args = {};
 
     var updateImage = function(bitmapDataArray)
     {
@@ -54,7 +50,6 @@ deanstein.Submit = function()
                 console.log("No image found for " + imgTypesArray[i]);
                 img.src = 'img/noImage.png';
             } else {
-                //debugger;
                 console.log("Drawing new bitmap data for " + imgTypesArray[i]);
                 var evalBitmapData = eval(bitmapDataArray[i]);
                 var data = new Uint8Array(evalBitmapData);
@@ -65,11 +60,8 @@ deanstein.Submit = function()
         }
     }
 
-    //console.log("deanstein.ExtractMaterialTextures");
-    //console.log("args");
     // NOTE: window.FormItInterface.CallMethod will call the function
-    // defined above with the given args.  This is needed to communicate
-    // between the web JS enging process and the FormIt process.
-    window.FormItInterface.CallMethod("deanstein.ExtractMaterialTextures", args);
-    FormItInterface.CallMethod("deanstein.ExtractMaterialTextures", args, updateImage);
+    // defined above with the given args. This is needed to communicate
+    // between the web JS engine process and the FormIt process.
+    FormItInterface.CallMethod("ExtractMaterialTextures.execute", args, updateImage);
 }

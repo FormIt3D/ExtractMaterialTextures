@@ -1,9 +1,9 @@
-if (typeof deanstein == 'undefined')
+if (typeof ExtractMaterialTextures == 'undefined')
 {
-    deanstein = {};
+    ExtractMaterialTextures = {};
 }
 
-deanstein.ExtractMaterialTextures = function(args)
+ExtractMaterialTextures.execute = function(args)
 {
     console.clear();
     console.log("Extract Material Maps");

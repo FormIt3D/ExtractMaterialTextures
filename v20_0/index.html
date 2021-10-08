@@ -8,10 +8,15 @@
         </script>
     <script type="text/javascript" src="ExtractMaterialTextures_Web.js">
         </script>
-    <script type="text/javascript">FormItInterface.AddEventListener("DOMContentLoaded");
-        </script>
     <script type="text/javascript">
-        FormItInterface.AddEventListener("DOMContentLoaded", deanstein.PlaceholderImage);
+        FormItInterface.Initialize(function () {
+
+            // initialize the UI
+            // this must be called from here, to ensure the HTML page is loaded
+            // before scripts try to access the window document
+            ExtractMaterialTextures.createPlaceholderImages();
+
+        }); // DOMContentLoaded
     </script>
 </head>
 <body>
@@ -21,7 +26,7 @@
     <li>Click "Extract Maps" to see the native resolution images defined in the Material</li>
 </ul> </p>
 <form name=a>
-        <input type=button value="Extract Maps" onClick="deanstein.Submit();">
+        <input type=button value="Extract Maps" onClick="ExtractMaterialTextures.submit();">
 </form>
 <ul>
     <li>Right-click an image, select "Copy Image"</li>
